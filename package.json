@@ -1,0 +1,21 @@
+{
+  "name": "com.flexford.unity-flexible-tooltip",
+  "version": "1.0.0",
+  "displayName": "Flexible tooltip",
+  "description": "",
+  "unity": "2020.3",
+  "dependencies": {},
+  "keywords": [
+    "toolbar",
+    "extender",
+    "custom",
+    "UI",
+    "button"
+  ],
+  "author": {
+    "name": "Alexander Zonov",
+    "email": "flexford1@gmail.com",
+    "url": "https://github.com/AlexZonov/unity-flexible-tooltip"
+  },
+  "samples": []
+}
