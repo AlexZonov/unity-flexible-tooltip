@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 289321209919574427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 328131463446298575}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 10
-    m_Right: 30
+    m_Right: 10
     m_Top: 10
     m_Bottom: 10
   m_ChildAlignment: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 1
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!114 &1655363867901418011
 MonoBehaviour:
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 1
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!114 &5435454205208506339
 MonoBehaviour:
@@ -348,7 +348,7 @@ RectTransform:
   m_GameObject: {fileID: 3874276309224288200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6405906171001681874}
@@ -357,8 +357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 82.025, y: 0}
-  m_SizeDelta: {x: 144.05, y: 0}
+  m_AnchoredPosition: {x: 92.025, y: 0}
+  m_SizeDelta: {x: 164.05, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2905281153095168829
 MonoBehaviour:
@@ -440,7 +440,7 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 110.45, y: 152.52}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &6799263488021542680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,12 +493,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96083cf2a965ce944a4becc29e4e4216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 2
+  _viewType: 0
   _alignment: 0
   _style: {fileID: 11400000, guid: afd445e66989a324fa9bb8906a0f12a3, type: 2}
   _width: 184.05
   _dependencies: {fileID: 313082460423028051}
-  _pixelsPerUnitMultiplier: 1
   _renderAtUpdate: 0
 --- !u!223 &8301156461621201044
 Canvas:

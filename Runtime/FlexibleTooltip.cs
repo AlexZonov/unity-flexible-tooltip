@@ -81,8 +81,6 @@ namespace com.flexford.packages.tooltip
 			if (_dependencies != null)
 			{
 				_dependencies.HorizontalGroupTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _width);
-				_dependencies.VerticalGroup.childScaleHeight = _viewType == FlexibleTooltipViewType.Horizontal;
-				_dependencies.HorizontalGroup.childScaleHeight = _viewType == FlexibleTooltipViewType.Horizontal;
 			}
 
 			bool isSizeUpdating = true;

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9611fd377ef74b9aa50602086c93ecc7, type: 3}
   m_Name: DefaultTooltipStyle(medium)
   m_EditorClassIdentifier: 
-  <Rectangle>k__BackingField:
-    <BgSprite>k__BackingField: {fileID: 0}
-    <FrameSprite>k__BackingField: {fileID: 0}
-    <BgColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
-    <FrameColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Rect>k__BackingField:
+    <BgSprite>k__BackingField: {fileID: 21300000, guid: c28b9d40fdc19644b9a24b6b1ce1c087, type: 3}
+    <FrameSprite>k__BackingField: {fileID: 21300000, guid: 3d663bbfbb0c6554fb30e55f91f37e0a, type: 3}
+    <BgColor>k__BackingField: {r: 0.039215688, g: 0.05882353, b: 0.07450981, a: 0.69803923}
+    <FrameColor>k__BackingField: {r: 0.7294118, g: 0.75686276, b: 0.7647059, a: 1}
     <Padding>k__BackingField:
       m_Left: 10
       m_Right: 10
@@ -27,7 +27,7 @@ MonoBehaviour:
       <TopRight>k__BackingField: {x: 1, y: 1}
       <BottomLeft>k__BackingField: {x: 1, y: 1}
       <BottomRight>k__BackingField: {x: 1, y: 1}
-  <HorizontalPivot>k__BackingField:
+  <Horizontal>k__BackingField:
     <BgSprite>k__BackingField: {fileID: 21300000, guid: c5d7590b8793efb4584bcac13e98b273, type: 3}
     <FrameSprite>k__BackingField: {fileID: 21300000, guid: 9ec93d71e8f22f24baa3c3a5c9f70505, type: 3}
     <BgColor>k__BackingField: {r: 0.039215688, g: 0.05882353, b: 0.07450981, a: 0.69803923}
@@ -42,7 +42,7 @@ MonoBehaviour:
       <TopRight>k__BackingField: {x: 1, y: 1}
       <BottomLeft>k__BackingField: {x: -1, y: -1}
       <BottomRight>k__BackingField: {x: 1, y: -1}
-  <VerticalPivot>k__BackingField:
+  <Vertical>k__BackingField:
     <BgSprite>k__BackingField: {fileID: 21300000, guid: d57e36d5116d3cd4eb05801b2e3c8091, type: 3}
     <FrameSprite>k__BackingField: {fileID: 21300000, guid: 087c2546bb9f61f4b95dafb14f7514e1, type: 3}
     <BgColor>k__BackingField: {r: 0.039215688, g: 0.05882353, b: 0.07450981, a: 0.69803923}
