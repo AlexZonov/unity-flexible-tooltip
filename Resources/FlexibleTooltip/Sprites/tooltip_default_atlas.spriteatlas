@@ -56,14 +56,18 @@ SpriteAtlas:
     - {fileID: 21300000, guid: 3d663bbfbb0c6554fb30e55f91f37e0a, type: 3}
     - {fileID: 21300000, guid: 40112a8dca6b4194a81960f17c960684, type: 3}
     - {fileID: 21300000, guid: 7bc81b5e1bedc2645b5c61b0559c37b5, type: 3}
+    - {fileID: 21300000, guid: 86133d165a1ea1942beefda7d0964b70, type: 3}
+    - {fileID: 21300000, guid: 0cf090908462f5b44ab9f9d46a04905f, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: c28b9d40fdc19644b9a24b6b1ce1c087, type: 3}
+  - {fileID: 21300000, guid: 0cf090908462f5b44ab9f9d46a04905f, type: 3}
   - {fileID: 21300000, guid: 9ec93d71e8f22f24baa3c3a5c9f70505, type: 3}
   - {fileID: 21300000, guid: d57e36d5116d3cd4eb05801b2e3c8091, type: 3}
+  - {fileID: 21300000, guid: 86133d165a1ea1942beefda7d0964b70, type: 3}
   - {fileID: 21300000, guid: 087c2546bb9f61f4b95dafb14f7514e1, type: 3}
   - {fileID: 21300000, guid: d99c1068b71d7684eb3902a2fc3aeca4, type: 3}
   - {fileID: 21300000, guid: 548fb7f95be0f27499d9eb355839c7d4, type: 3}
@@ -75,8 +79,10 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3d663bbfbb0c6554fb30e55f91f37e0a, type: 3}
   m_PackedSpriteNamesToIndex:
   - tooltip_horizontal_back_short
+  - tooltip_rect_frame
   - tooltip_horizontal_frame_medium
   - tooltip_vertical_back_medium
+  - tooltip_rect_back
   - tooltip_vertical_frame_medium
   - tooltip_horizontal_frame_long
   - tooltip_vertical_frame_long

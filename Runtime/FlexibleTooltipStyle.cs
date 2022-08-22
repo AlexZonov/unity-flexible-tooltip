@@ -6,15 +6,6 @@ namespace com.flexford.packages.tooltip
 	public class FlexibleTooltipStyle : ScriptableObject
 	{
 		[field: SerializeField]
-		public FlexibleTooltipStyleViewData Rectangle { get; private set; }
-
-		[field: SerializeField]
-		public FlexibleTooltipStyleViewData HorizontalPivot { get; private set; }
-
-		[field: SerializeField]
-		public FlexibleTooltipStyleViewData VerticalPivot { get; private set; }
-
-		[field: SerializeField]
 		public FlexibleTooltipStyleViewData Rect { get; private set; }
 
 		[field: SerializeField]

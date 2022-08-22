@@ -19,23 +19,26 @@ namespace com.flexford.packages.tooltip
 		[SerializeField]
 		private float _width = 200;
 
-		[SerializeField]
+		[SerializeField][HideInInspector]
 		private FlexibleTooltipDependencies _dependencies;
 
-		private RectTransform _rectTransform;
-
 		[SerializeField]
-		private bool _renderAtUpdate = true;
+		private bool _renderAtUpdate = false;
 
+		private RectTransform RectTransform { get; set; }
 		private float PixelPerUnit { get; set; }
+
+		private void Reset()
+		{
+			_dependencies = GetComponentInChildren<FlexibleTooltipDependencies>(true);
+		}
 
 		private void OnEnable()
 		{
-			_rectTransform = transform as RectTransform;
+			RectTransform = transform as RectTransform;
 			UpdateView();
 		}
 
-#if UNITY_EDITOR
 		private void Update()
 		{
 			if (_renderAtUpdate)
@@ -43,40 +46,31 @@ namespace com.flexford.packages.tooltip
 				UpdateView();
 			}
 		}
-#endif
 
 		private void UpdateView()
 		{
-			Sprite bgSprite = _style?.GetBgSprite(_viewType);
-			Vector2 styleScale = _style?.GetScale(_viewType, _alignment) ?? Vector2.one;
-			Vector2 baseSize = bgSprite != null ? bgSprite.rect.size : _rectTransform.sizeDelta;
-
-			UpdateSize();
-
-			if (_style != null && _dependencies?.BgImage != null)
+			if (_dependencies == null || _style == null)
 			{
-				_dependencies.BgImage.sprite = bgSprite;
-				_dependencies.BgImage.color = _style.GetBgColor(_viewType);
-				_dependencies.BgImage.pixelsPerUnitMultiplier = PixelPerUnit;
+				return;
 			}
 
-			if (_style != null && _dependencies?.FrameImage != null)
-			{
-				_dependencies.FrameImage.sprite = _style.GetFrameSprite(_viewType);
-				_dependencies.FrameImage.color = _style.GetFrameColor(_viewType);
-				_dependencies.FrameImage.pixelsPerUnitMultiplier = PixelPerUnit;
-			}
+			Sprite bgSprite = _style.GetBgSprite(_viewType);
+			Vector2 styleScale = _style.GetScale(_viewType, _alignment);
+			Vector2 baseSize = bgSprite != null ? bgSprite.rect.size : RectTransform.sizeDelta;
 
-			if (_style != null && _dependencies != null)
-			{
-				_dependencies.VerticalGroupTransform.localScale = styleScale;
-				_dependencies.ContentTransform.localScale = styleScale;
-			}
+			UpdateSize(baseSize);
+
+			UpdateBackgound();
+			UpdateFrame();
+
+			// apply reflection
+			_dependencies.VerticalGroupTransform.localScale = styleScale;
+			_dependencies.ContentTransform.localScale = styleScale;
 
 			UpdatePivot(styleScale, baseSize);
 		}
 
-		private void UpdateSize()
+		private void UpdateSize(Vector2 baseSize)
 		{
 			if (_dependencies != null)
 			{
@@ -88,29 +82,42 @@ namespace com.flexford.packages.tooltip
 			do
 			{
 				RebuildLayout();
-				RecalculatePixelPerUnit();
+				RecalculatePixelPerUnit(baseSize);
 				float previousPixelPerUnit = PixelPerUnit;
 				_dependencies.VerticalGroup.padding = GetPaddingWithPixelPerUnit();
 				RebuildLayout();
-				RecalculatePixelPerUnit();
-				isSizeUpdating = Mathf.Abs(previousPixelPerUnit - PixelPerUnit) > 0.001f;
+				RecalculatePixelPerUnit(baseSize);
+				isSizeUpdating = Mathf.Abs(previousPixelPerUnit - PixelPerUnit) > 0.01f;
 				iterations++;
 			} while (isSizeUpdating);
 		}
 
-		private void RecalculatePixelPerUnit()
+		private void UpdateBackgound()
 		{
-			Sprite bgSprite = _style?.GetBgSprite(_viewType);
-			if (bgSprite != null)
+			Image bgImage = _dependencies.BgImage;
+			if (bgImage != null)
 			{
-				Vector2 baseSize = bgSprite.rect.size;
-				Vector2 currentSize = _rectTransform.sizeDelta;
-				PixelPerUnit = CalculatePixelPerUnit(baseSize, currentSize);
+				bgImage.sprite = _style.GetBgSprite(_viewType);
+				bgImage.color = _style.GetBgColor(_viewType);
+				bgImage.pixelsPerUnitMultiplier = PixelPerUnit;
 			}
-			else
+		}
+
+		private void UpdateFrame()
+		{
+			Image frameImage = _dependencies.FrameImage;
+			if (frameImage != null)
 			{
-				PixelPerUnit = 1f;
+				frameImage.sprite = _style.GetFrameSprite(_viewType);
+				frameImage.color = _style.GetFrameColor(_viewType);
+				frameImage.pixelsPerUnitMultiplier = PixelPerUnit;
 			}
+		}
+
+		private void RecalculatePixelPerUnit(Vector2 baseSize)
+		{
+			Vector2 currentSize = RectTransform.sizeDelta;
+			PixelPerUnit = CalculatePixelPerUnit(baseSize, currentSize);
 		}
 
 		private float CalculatePixelPerUnit(Vector2 baseSize, Vector2 currentSize)
@@ -151,7 +158,7 @@ namespace com.flexford.packages.tooltip
 				return (baseSize * (float) pivot) / (float) currentSize;
 			}
 
-			Vector2 currentSize = _rectTransform.sizeDelta;
+			Vector2 currentSize = RectTransform.sizeDelta;
 			Vector2 spritePivot = _style.GetSpritePivot(_viewType, _alignment);
 
 			// add relative offset + pixels per unit offset
@@ -172,7 +179,7 @@ namespace com.flexford.packages.tooltip
 			spritePivot.y = Mathf.Clamp01(spritePivot.y);
 			spritePivot.x = Mathf.Clamp01(spritePivot.x);
 
-			_rectTransform.pivot = spritePivot;
+			RectTransform.pivot = spritePivot;
 
 			RebuildLayout();
 		}
@@ -202,7 +209,7 @@ namespace com.flexford.packages.tooltip
 			LayoutRebuilder.ForceRebuildLayoutImmediate(_dependencies.ContentTransform);
 			LayoutRebuilder.ForceRebuildLayoutImmediate(_dependencies.VerticalGroupTransform);
 			LayoutRebuilder.ForceRebuildLayoutImmediate(_dependencies.HorizontalGroupTransform);
-			LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);
+			LayoutRebuilder.ForceRebuildLayoutImmediate(RectTransform);
 		}
 	}
 }
