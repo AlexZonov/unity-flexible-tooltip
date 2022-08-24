@@ -4,6 +4,7 @@ using UnityEditor;
 #if UNITY_2021_1_OR_NEWER
 	using UnityEditor.SceneManagement;
 #else
+	using UnityEditor.SceneManagement;
 	using UnityEditor.Experimental.SceneManagement;
 #endif
 
@@ -17,12 +18,18 @@ namespace com.flexford.packages.tooltip.editor
 	{
 		public static string GetProjectWindowFolder()
 		{
-			string projectPath = new DirectoryInfo(Application.dataPath).Parent.FullName;
+			string projectPath = new DirectoryInfo(Application.dataPath).Parent.FullName + "/";
 			string objectProjectPath = AssetDatabase.GetAssetPath(Selection.activeObject);
-			string objectAbsolutePath = string.IsNullOrEmpty(objectProjectPath) ? Application.dataPath : $"{projectPath}/{objectProjectPath}";
+			string objectAbsolutePath = string.IsNullOrEmpty(objectProjectPath) ? Application.dataPath : $"{projectPath}{objectProjectPath}";
 			string objectCorrectAbsolutePath = objectAbsolutePath.Replace('/', Path.DirectorySeparatorChar).Replace('\\', Path.DirectorySeparatorChar);
 			string folderAbsolutePath = File.Exists(objectCorrectAbsolutePath) ? Path.GetDirectoryName(objectCorrectAbsolutePath) : objectCorrectAbsolutePath;
-			return Path.GetRelativePath(projectPath, folderAbsolutePath);
+
+			string GetRelativePath(string relativeTo, string path)
+			{
+				return path.Substring(relativeTo.Length);
+			}
+
+			return GetRelativePath(projectPath, folderAbsolutePath);
 		}
 
 		public static void PlaceUIElementRoot(GameObject element, MenuCommand menuCommand)
