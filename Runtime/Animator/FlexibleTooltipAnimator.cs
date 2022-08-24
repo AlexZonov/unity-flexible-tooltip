@@ -129,7 +129,7 @@ namespace com.flexford.packages.tooltip
 			{
 				gameObject.SetActive(true);
 				_tooltip.UpdateView();
-				startAction();
+				startAction?.Invoke();
 			}
 
 			Tween tween = GetShowTween().ChangeEndValue(1f, showDuration, true)
