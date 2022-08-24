@@ -14,6 +14,9 @@ namespace com.flexford.packages.tooltip
 		private CanvasGroup _canvasGroup;
 
 		[SerializeField]
+		private bool _needDisbleAtInit = true;
+
+		[SerializeField]
 		private float _showDuration;
 
 		[SerializeField]
@@ -22,6 +25,7 @@ namespace com.flexford.packages.tooltip
 		[SerializeField]
 		private float _hideDuration;
 
+		private bool _didDisbleAtInit;
 		private TweenerCore<float, float, FloatOptions> _showTween;
 		private TweenerCore<float, float, FloatOptions> _hideTween;
 
@@ -32,6 +36,28 @@ namespace com.flexford.packages.tooltip
 		{
 			_tooltip = GetComponent<FlexibleTooltip>();
 			_canvasGroup = GetComponent<CanvasGroup>();
+		}
+
+		private void OnEnable()
+		{
+			if (_needDisbleAtInit && !_didDisbleAtInit && Application.isPlaying)
+			{
+				MarkDisableAtInitCompletion();
+				HideForce();
+			}
+		}
+
+		private void OnDisable()
+		{
+			if (_showTween != null && _showTween.IsPlaying())
+			{
+				_showTween.Complete(true);
+			}
+
+			if (_hideTween != null && _hideTween.IsPlaying())
+			{
+				_hideTween.Complete(true);
+			}
 		}
 
 		private void OnDestroy()
@@ -84,9 +110,9 @@ namespace com.flexford.packages.tooltip
 
 		public void ShowAndHide(float showDuration, float idleDuration, float hideDuration)
 		{
-			ShowImpl(showDuration).OnComplete(OnShowComplete);
+			ShowImpl(showDuration, null, OnCompleteCallback);
 
-			void OnShowComplete()
+			void OnCompleteCallback()
 			{
 				Tween tween = HideImpl(hideDuration);
 				tween.Rewind();
@@ -95,21 +121,39 @@ namespace com.flexford.packages.tooltip
 			}
 		}
 
-		private Tween ShowImpl(float showDuration)
+		private Tween ShowImpl(float showDuration, TweenCallback startAction = null, TweenCallback completeAction = null)
 		{
-			_hideTween?.Pause();
+			PrepareSomeAnimation();
 
-			Tween tween = GetShowTween().ChangeEndValue(1f, showDuration, true).OnComplete(null);
+			void OnStartCallback()
+			{
+				gameObject.SetActive(true);
+				_tooltip.UpdateView();
+				startAction();
+			}
+
+			Tween tween = GetShowTween().ChangeEndValue(1f, showDuration, true)
+			                            .OnPlay(OnStartCallback)
+			                            .OnComplete(completeAction);
 			tween.Rewind(false);
 			tween.Play();
 			return tween;
 		}
 
-		private Tween HideImpl(float hideDuration)
+		private Tween HideImpl(float hideDuration, TweenCallback startAction = null, TweenCallback completeAction = null)
 		{
-			_showTween?.Pause();
+			PrepareSomeAnimation();
 
-			Tween tween = GetHideTween().ChangeEndValue(0f, hideDuration, true).OnComplete(null);
+			void OnCompleteCallback()
+			{
+				_canvasGroup.alpha = 0f;
+				gameObject.SetActive(false);
+				completeAction?.Invoke();
+			}
+
+			Tween tween = GetHideTween().ChangeEndValue(0f, hideDuration, true)
+			                            .OnPlay(startAction)
+			                            .OnComplete(OnCompleteCallback);
 			tween.Rewind(false);
 			tween.Play();
 			return tween;
@@ -137,6 +181,18 @@ namespace com.flexford.packages.tooltip
 			}
 
 			return _hideTween;
+		}
+
+		private void PrepareSomeAnimation()
+		{
+			MarkDisableAtInitCompletion();
+			_hideTween?.Pause();
+			_showTween?.Pause();
+		}
+
+		private void MarkDisableAtInitCompletion()
+		{
+			_didDisbleAtInit = true;
 		}
 	}
 }
