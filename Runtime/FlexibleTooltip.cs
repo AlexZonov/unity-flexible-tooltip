@@ -25,7 +25,9 @@ namespace com.flexford.packages.tooltip
 		[SerializeField]
 		private bool _renderAtUpdate = false;
 
-		private RectTransform RectTransform { get; set; }
+		private int _lastUpdateViewFrameCount;
+
+		private RectTransform RectTransform => transform as RectTransform;
 		private float PixelPerUnit { get; set; }
 
 		public FlexibleTooltipAlignment Alignment => _alignment;
@@ -37,7 +39,11 @@ namespace com.flexford.packages.tooltip
 
 		private void OnEnable()
 		{
-			RectTransform = transform as RectTransform;
+			UpdateView();
+		}
+
+		private void OnRectTransformDimensionsChange()
+		{
 			UpdateView();
 		}
 
@@ -57,10 +63,17 @@ namespace com.flexford.packages.tooltip
 
 		public void UpdateView()
 		{
+			if (_lastUpdateViewFrameCount == Time.frameCount)
+			{
+				return;
+			}
+
 			if (_dependencies == null || _style == null)
 			{
 				return;
 			}
+
+			_lastUpdateViewFrameCount = Time.frameCount;
 
 			Sprite bgSprite = _style.GetBgSprite(_viewType);
 			Vector2 styleScale = _style.GetScale(_viewType, _alignment);
