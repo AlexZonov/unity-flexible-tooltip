@@ -26,7 +26,7 @@ namespace com.flexford.packages.tooltip
 		// [SerializeField]
 		// private bool _debugFollowCursor;
 
-		private FlexibleTooltipAlignment DefaultAlignment { get; set; }
+		//private FlexibleTooltipAlignment DefaultAlignment { get; set; }
 		private RectTransform TooltipTransform => _tooltip?.transform as RectTransform;
 
 		public ContainerWrapMode DefaultMode => _mode;
@@ -35,7 +35,7 @@ namespace com.flexford.packages.tooltip
 
 		private void OnEnable()
 		{
-			DefaultAlignment = _tooltip.Alignment;
+			//DefaultAlignment = _tooltip.Alignment;
 			Wrap();
 
 			// SceneView.duringSceneGui -= OnSceneGui;
