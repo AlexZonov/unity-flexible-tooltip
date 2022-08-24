@@ -28,6 +28,8 @@ namespace com.flexford.packages.tooltip
 		private RectTransform RectTransform { get; set; }
 		private float PixelPerUnit { get; set; }
 
+		public FlexibleTooltipAlignment Alignment => _alignment;
+
 		private void Reset()
 		{
 			_dependencies = GetComponentInChildren<FlexibleTooltipDependencies>(true);
@@ -47,7 +49,13 @@ namespace com.flexford.packages.tooltip
 			}
 		}
 
-		private void UpdateView()
+		public void SetAlignment(FlexibleTooltipAlignment alignment)
+		{
+			_alignment = alignment;
+			UpdateView();
+		}
+
+		public void UpdateView()
 		{
 			if (_dependencies == null || _style == null)
 			{

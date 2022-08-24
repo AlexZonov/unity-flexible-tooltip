@@ -1,16 +1,15 @@
 {
   "name": "com.flexford.unity-flexible-tooltip",
   "version": "1.0.0",
-  "displayName": "Flexible tooltip",
-  "description": "",
+  "displayName": "Flexible Tooltip",
+  "description": "A simple, flexible and user-friendly UI element that can be used for both tooltips and dialogs",
   "unity": "2020.3",
   "dependencies": {},
   "keywords": [
-    "toolbar",
-    "extender",
-    "custom",
-    "UI",
-    "button"
+    "tooltip",
+    "hint",
+    "dialog",
+    "UI"
   ],
   "author": {
     "name": "Alexander Zonov",

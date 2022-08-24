@@ -33,4 +33,5 @@ A simple, flexible and user-friendly UI element that can be used for both toolti
 
 ## How to use 💡
 1) <kbd>Hierarhy -> RBM -> UI -> Flexible Tooltip -> Create</kbd>
-2) Done, now you can use UI element
+2) Prepare element in inspector
+2) Done

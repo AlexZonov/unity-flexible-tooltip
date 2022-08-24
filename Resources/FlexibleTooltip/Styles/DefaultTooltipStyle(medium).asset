@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: DefaultTooltipStyle(medium)
   m_EditorClassIdentifier: 
   <Rect>k__BackingField:
-    <BgSprite>k__BackingField: {fileID: 21300000, guid: c28b9d40fdc19644b9a24b6b1ce1c087, type: 3}
-    <FrameSprite>k__BackingField: {fileID: 21300000, guid: 3d663bbfbb0c6554fb30e55f91f37e0a, type: 3}
+    <BgSprite>k__BackingField: {fileID: 21300000, guid: 86133d165a1ea1942beefda7d0964b70, type: 3}
+    <FrameSprite>k__BackingField: {fileID: 21300000, guid: 0cf090908462f5b44ab9f9d46a04905f, type: 3}
     <BgColor>k__BackingField: {r: 0.039215688, g: 0.05882353, b: 0.07450981, a: 0.69803923}
     <FrameColor>k__BackingField: {r: 0.7294118, g: 0.75686276, b: 0.7647059, a: 1}
     <Padding>k__BackingField:
