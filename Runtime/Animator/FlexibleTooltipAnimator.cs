@@ -1,4 +1,3 @@
-#if F_TOOLTIP_DOTWEEN
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
@@ -78,6 +77,11 @@ namespace com.flexford.packages.tooltip
 			ShowAndHide(_showDuration, _idleDuration, _hideDuration);
 		}
 
+		public void ShowAndHide(float idleDuration)
+		{
+			ShowAndHide(_showDuration, idleDuration, _hideDuration);
+		}
+
 		public void ShowAndHide(float showDuration, float idleDuration, float hideDuration)
 		{
 			ShowImpl(showDuration).OnComplete(OnShowComplete);
@@ -136,4 +140,3 @@ namespace com.flexford.packages.tooltip
 		}
 	}
 }
-#endif
