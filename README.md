@@ -3,14 +3,17 @@
 A simple, flexible and user-friendly UI element that can be used for both tooltips and dialogs.
 
 ## Features 🏆
-- horizontal 4-sides layout
-- vertical 4-sides layout
-- simple rect 4-sides layout
+- supported horizontal 4-sides layout
+- supported vertical 4-sides layout
+- supported simple rect 4-sides layout
+- has simple rect wrapper component (<kbd>FlexibleTooltipRectWrapper</kbd>)
+- has simple animator component (<kbd>FlexibleTooltipAnimator</kbd>)
+- easy style creation and replacement
 - WIP: set some content
-- WIP: rect wrapper component
 
 ## Requirements ⚠️
 - Unity 2020.3 and above
+- DOTween (with asmdef: <kbd>DOTween.Modules</kbd>)
 
 ## Installation 💾
 <details>
@@ -32,6 +35,14 @@ A simple, flexible and user-friendly UI element that can be used for both toolti
 </details>
 
 ## How to use 💡
+### Just use default element with default styles
 1) <kbd>Hierarhy -> RBM -> UI -> Flexible Tooltip -> Create</kbd>
 2) Prepare element in inspector
-2) Done
+3) Done
+
+### Create your element variant
+TODO
+
+
+### Create your own unique styles
+TODO
