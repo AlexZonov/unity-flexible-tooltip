@@ -1,8 +1,4 @@
-using System;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 namespace com.flexford.packages.tooltip
 {
