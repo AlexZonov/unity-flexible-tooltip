@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace com.flexford.packages.tooltip
 {
-	[CreateAssetMenu(fileName = "TooltipStyle", menuName = "UI/Tooltip/Style")]
+	[CreateAssetMenu(fileName = "TooltipStyle", menuName = "UI/Flexible Tooltip/Style")]
 	public class FlexibleTooltipStyle : ScriptableObject
 	{
 		[field: SerializeField]
