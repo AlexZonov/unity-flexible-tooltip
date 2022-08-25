@@ -8,6 +8,11 @@ namespace com.flexford.packages.tooltip
 		[SerializeField]
 		private FlexibleTooltipAnimator _animator;
 
+		private void Reset()
+		{
+			_animator = GetComponent<FlexibleTooltipAnimator>();
+		}
+
 		public void OnPointerClick(PointerEventData eventData)
 		{
 			if (_animator != null)
