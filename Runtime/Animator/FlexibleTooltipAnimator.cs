@@ -132,7 +132,8 @@ namespace com.flexford.packages.tooltip
 				startAction?.Invoke();
 			}
 
-			Tween tween = GetShowTween().ChangeEndValue(1f, showDuration, true)
+			float startValue = gameObject.activeSelf ? _canvasGroup.alpha : 0f;
+			Tween tween = GetShowTween().ChangeValues(startValue, 1f, showDuration)
 			                            .OnPlay(OnStartCallback)
 			                            .OnComplete(completeAction);
 			tween.Rewind(false);
