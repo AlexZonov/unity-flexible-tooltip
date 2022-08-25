@@ -6,9 +6,6 @@ namespace com.flexford.packages.tooltip
 	public class FlexibleTooltipHideOnClick : MonoBehaviour, IPointerClickHandler
 	{
 		[SerializeField]
-		private FlexibleTooltip _tooltip;
-
-		[SerializeField]
 		private FlexibleTooltipAnimator _animator;
 
 		public void OnPointerClick(PointerEventData eventData)
@@ -17,9 +14,9 @@ namespace com.flexford.packages.tooltip
 			{
 				_animator.Hide();
 			}
-			else if (_tooltip != null)
+			else
 			{
-				_tooltip.gameObject.SetActive(false);
+				gameObject.SetActive(false);
 			}
 		}
 	}

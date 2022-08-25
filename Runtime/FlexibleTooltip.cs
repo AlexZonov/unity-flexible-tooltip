@@ -37,17 +37,6 @@ namespace com.flexford.packages.tooltip
 			_dependencies = GetComponentInChildren<FlexibleTooltipDependencies>(true);
 		}
 
-		private void Awake()
-		{
-			// hack for fix graphic raycaster interractable
-			if (_dependencies?.Canvas != null && Application.isPlaying)
-			{
-				bool overrideSorting = _dependencies.Canvas.overrideSorting;
-				_dependencies.Canvas.overrideSorting = !overrideSorting;
-				_dependencies.Canvas.overrideSorting = overrideSorting;
-			}
-		}
-
 		private void OnEnable()
 		{
 			UpdateView();
