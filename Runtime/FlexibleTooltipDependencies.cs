@@ -6,6 +6,9 @@ namespace com.flexford.packages.tooltip
 	public class FlexibleTooltipDependencies : MonoBehaviour
 	{
 		[field: SerializeField]
+		public Canvas Canvas { get; private set; }
+
+		[field: SerializeField]
 		public HorizontalLayoutGroup HorizontalGroup { get; private set; }
 
 		[field: SerializeField]
