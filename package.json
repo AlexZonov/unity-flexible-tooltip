@@ -1,6 +1,6 @@
 {
   "name": "com.flexford.unity-flexible-tooltip",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "displayName": "Flexible Tooltip",
   "description": "A simple, flexible and user-friendly UI element that can be used for both tooltips and dialogs",
   "unity": "2020.3",

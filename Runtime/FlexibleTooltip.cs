@@ -48,12 +48,20 @@ namespace com.flexford.packages.tooltip
 
 		private void OnRectTransformDimensionsChange()
 		{
+			if (_renderAtUpdate)
+			{
+				return;
+			}
+
 			if (_updateEndOfFrameCoroutine != null)
 			{
 				StopCoroutine(_updateEndOfFrameCoroutine);
 			}
 
-			_updateEndOfFrameCoroutine = StartCoroutine(UpdateEndOfFrame());
+			if (gameObject.activeInHierarchy)
+			{
+				_updateEndOfFrameCoroutine = StartCoroutine(UpdateEndOfFrame());
+			}
 		}
 
 		private IEnumerator UpdateEndOfFrame()
