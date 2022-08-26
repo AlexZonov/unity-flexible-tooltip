@@ -128,7 +128,7 @@ namespace com.flexford.packages.tooltip
 			void OnStartCallback()
 			{
 				gameObject.SetActive(true);
-				_tooltip.UpdateView();
+				_tooltip.ForceUpdateView();
 				startAction?.Invoke();
 			}
 

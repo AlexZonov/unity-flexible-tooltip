@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ namespace com.flexford.packages.tooltip
 	[ExecuteInEditMode]
 	public class FlexibleTooltip : MonoBehaviour
 	{
+		private static readonly YieldInstruction WAIT_END_OF_FRAME = new WaitForEndOfFrame();
+
 		[SerializeField]
 		private FlexibleTooltipViewType _viewType;
 
@@ -26,6 +29,7 @@ namespace com.flexford.packages.tooltip
 		private bool _renderAtUpdate = false;
 
 		private int _lastUpdateViewFrameCount;
+		private Coroutine _updateEndOfFrameCoroutine;
 
 		private RectTransform RectTransform => transform as RectTransform;
 		private float PixelPerUnit { get; set; }
@@ -44,7 +48,26 @@ namespace com.flexford.packages.tooltip
 
 		private void OnRectTransformDimensionsChange()
 		{
-			UpdateView();
+			if (_updateEndOfFrameCoroutine != null)
+			{
+				StopCoroutine(_updateEndOfFrameCoroutine);
+			}
+
+			_updateEndOfFrameCoroutine = StartCoroutine(UpdateEndOfFrame());
+		}
+
+		private IEnumerator UpdateEndOfFrame()
+		{
+			if (Application.isPlaying)
+			{
+				yield return WAIT_END_OF_FRAME;
+			}
+			else
+			{
+				yield return null;
+			}
+
+			ForceUpdateView();
 		}
 
 		private void Update()
@@ -58,6 +81,12 @@ namespace com.flexford.packages.tooltip
 		public void SetAlignment(FlexibleTooltipAlignment alignment)
 		{
 			_alignment = alignment;
+			UpdateView();
+		}
+
+		public void ForceUpdateView()
+		{
+			_lastUpdateViewFrameCount = -1;
 			UpdateView();
 		}
 
