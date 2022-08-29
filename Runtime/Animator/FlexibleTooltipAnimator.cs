@@ -29,8 +29,9 @@ namespace com.flexford.packages.tooltip
 		private TweenerCore<float, float, FloatOptions> _showTween;
 		private TweenerCore<float, float, FloatOptions> _hideTween;
 
-		public bool IsShowing => _showTween != null && _showTween.IsPlaying();
-		public bool IsHidding => _hideTween != null && _hideTween.IsPlaying();
+		public bool IsShowing => _showTween != null && _showTween.IsPlaying() && _showTween.ElapsedDelay() >= _showTween.Delay();
+		public bool IsHidding => _hideTween != null && _hideTween.IsPlaying() && _hideTween.ElapsedDelay() >= _hideTween.Delay();
+		public bool IsVisible => gameObject.activeSelf && _canvasGroup.alpha > 0f;
 
 		private void Reset()
 		{
@@ -128,7 +129,7 @@ namespace com.flexford.packages.tooltip
 			void OnStartCallback()
 			{
 				gameObject.SetActive(true);
-				_tooltip.UpdateView();
+				_tooltip.ForceUpdateView();
 				startAction?.Invoke();
 			}
 
