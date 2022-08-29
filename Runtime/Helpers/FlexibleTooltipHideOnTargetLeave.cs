@@ -22,6 +22,8 @@ namespace com.flexford.packages.tooltip
 
 		private RectTransform _transform;
 
+		public bool IsLeft => IsLeftImpl();
+
 		private void Awake()
 		{
 			_transform = transform as RectTransform;
@@ -40,18 +42,12 @@ namespace com.flexford.packages.tooltip
 				return;
 			}
 
-			Rect targetRect = FlexibleTooltipUtils.GetWorldRect(_target.TargetTransform);
-			Rect areaRect = FlexibleTooltipUtils.GetWorldRect(_areaTransform);
-			Vector2 targetPosAtPivot = FlexibleTooltipUtils.GetPositionAtPivot(targetRect, _target.TargetTransform.pivot);
-			areaRect.xMin += _padding.left;
-			areaRect.xMax -= _padding.right;
-			areaRect.yMin += _padding.bottom;
-			areaRect.yMax -= _padding.top;
+			if (_animator != null && (!_animator.IsVisible || _animator.IsHidding))
+			{
+				return;
+			}
 
-			bool isLeave = targetPosAtPivot.x < areaRect.xMin || targetPosAtPivot.x > areaRect.xMax ||
-			               targetPosAtPivot.y < areaRect.yMin || targetPosAtPivot.y > areaRect.yMax;
-
-			if (isLeave)
+			if (IsLeft)
 			{
 				HideImpl();
 			}
@@ -85,6 +81,25 @@ namespace com.flexford.packages.tooltip
 			{
 				gameObject.SetActive(false);
 			}
+		}
+
+		private bool IsLeftImpl()
+		{
+			if (_target == null || _target.TargetTransform == null )
+			{
+				return true;
+			}
+
+			Rect targetRect = FlexibleTooltipUtils.GetWorldRect(_target.TargetTransform);
+			Rect areaRect = FlexibleTooltipUtils.GetWorldRect(_areaTransform);
+			Vector2 targetPosAtPivot = FlexibleTooltipUtils.GetPositionAtPivot(targetRect, _target.TargetTransform.pivot);
+			areaRect.xMin += _padding.left;
+			areaRect.xMax -= _padding.right;
+			areaRect.yMin += _padding.bottom;
+			areaRect.yMax -= _padding.top;
+
+			return targetPosAtPivot.x < areaRect.xMin || targetPosAtPivot.x > areaRect.xMax ||
+			               targetPosAtPivot.y < areaRect.yMin || targetPosAtPivot.y > areaRect.yMax;
 		}
 	}
 }

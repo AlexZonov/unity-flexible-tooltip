@@ -29,6 +29,7 @@ namespace com.flexford.packages.tooltip
 		public void SetTarget(RectTransform targetTransform)
 		{
 			_transform = targetTransform;
+			UpdatePosition();
 		}
 
 		public void UpdatePosition()
