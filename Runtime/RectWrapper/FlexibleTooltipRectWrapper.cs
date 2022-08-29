@@ -12,7 +12,7 @@ namespace com.flexford.packages.tooltip
 		private ContainerWrapMode _mode;
 
 		[SerializeField]
-		private RectWrapSide _wrapSide = RectWrapSide.All;
+		private RectSide _wrapSide = RectSide.All;
 
 		[SerializeField] [HideInInspector]
 		private RectTransform _transform;
@@ -45,6 +45,17 @@ namespace com.flexford.packages.tooltip
 			{
 				Wrap();
 			}
+		}
+
+		private void OnDrawGizmos()
+		{
+			if (!enabled || _transform == null)
+			{
+				return;
+			}
+
+			Rect areaRect = _transform.rect;
+			FlexibleTooltipUtils.DrawRectTransformGizmos(_transform, areaRect, Color.white);
 		}
 
 		public void SetCustomTransform(RectTransform rectTransform)

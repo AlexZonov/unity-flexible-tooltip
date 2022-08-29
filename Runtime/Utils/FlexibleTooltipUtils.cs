@@ -4,7 +4,7 @@ namespace com.flexford.packages.tooltip
 {
 	public static class FlexibleTooltipUtils
 	{
-		public static void WrapInRect(RectTransform targetTansform, Rect containerRect, RectWrapSide side = RectWrapSide.All)
+		public static void WrapInRect(RectTransform targetTansform, Rect containerRect, RectSide side = RectSide.All)
 		{
 			Rect targetRect = GetWorldRect(targetTansform);
 			Rect wrappedRect = GetWrappedRect(targetRect, containerRect, side);
@@ -25,15 +25,15 @@ namespace com.flexford.packages.tooltip
 			}
 		}
 
-		public static Rect GetWrappedRect(Rect targetRect, Rect containerRect, RectWrapSide side = RectWrapSide.All)
+		public static Rect GetWrappedRect(Rect targetRect, Rect containerRect, RectSide side = RectSide.All)
 		{
 			float x = Mathf.Clamp(targetRect.xMin, 
-			                      side.HasFlagFast(RectWrapSide.Left) ? containerRect.xMin : targetRect.xMin,
-			                      side.HasFlagFast(RectWrapSide.Right) ? (containerRect.xMax - targetRect.width) : targetRect.xMax);
+			                      side.HasFlagFast(RectSide.Left) ? containerRect.xMin : targetRect.xMin,
+			                      side.HasFlagFast(RectSide.Right) ? (containerRect.xMax - targetRect.width) : targetRect.xMax);
 
 			float y = Mathf.Clamp(targetRect.yMin, 
-			                      side.HasFlagFast(RectWrapSide.Bottom) ? containerRect.yMin : targetRect.yMin, 
-			                      side.HasFlagFast(RectWrapSide.Top) ? (containerRect.yMax - targetRect.height) : targetRect.yMax);
+			                      side.HasFlagFast(RectSide.Bottom) ? containerRect.yMin : targetRect.yMin, 
+			                      side.HasFlagFast(RectSide.Top) ? (containerRect.yMax - targetRect.height) : targetRect.yMax);
 
 			return new Rect(x, y, targetRect.width, targetRect.height);
 		}

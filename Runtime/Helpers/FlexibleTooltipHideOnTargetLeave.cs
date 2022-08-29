@@ -18,6 +18,9 @@ namespace com.flexford.packages.tooltip
 		private RectTransform _areaTransform;
 
 		[SerializeField]
+		private RectSide _triggerSide = RectSide.All;
+
+		[SerializeField]
 		private RectOffset _padding;
 
 		private RectTransform _transform;
@@ -55,7 +58,7 @@ namespace com.flexford.packages.tooltip
 
 		private void OnDrawGizmos()
 		{
-			if (!enabled)
+			if (!enabled || _areaTransform == null)
 			{
 				return;
 			}
@@ -98,8 +101,15 @@ namespace com.flexford.packages.tooltip
 			areaRect.yMin += _padding.bottom;
 			areaRect.yMax -= _padding.top;
 
-			return targetPosAtPivot.x < areaRect.xMin || targetPosAtPivot.x > areaRect.xMax ||
-			       targetPosAtPivot.y < areaRect.yMin || targetPosAtPivot.y > areaRect.yMax;
+			bool hasLeftTrigger = _triggerSide.HasFlagFast(RectSide.Left);
+			bool hasRightTrigger = _triggerSide.HasFlagFast(RectSide.Right);
+			bool hasTopTrigger = _triggerSide.HasFlagFast(RectSide.Top);
+			bool hasBottomTrigger = _triggerSide.HasFlagFast(RectSide.Bottom);
+
+			return hasLeftTrigger && targetPosAtPivot.x < areaRect.xMin || 
+			       hasRightTrigger && targetPosAtPivot.x > areaRect.xMax ||
+			       hasBottomTrigger && targetPosAtPivot.y < areaRect.yMin || 
+			       hasTopTrigger && targetPosAtPivot.y > areaRect.yMax;
 		}
 	}
 }

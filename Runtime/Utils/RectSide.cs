@@ -3,7 +3,7 @@ using System;
 namespace com.flexford.packages.tooltip
 {
 	[Flags]
-	public enum RectWrapSide
+	public enum RectSide
 	{
 		Left = 1 << 0,
 		Right = 1 << 1,
@@ -14,7 +14,7 @@ namespace com.flexford.packages.tooltip
 
 	public static class RectWrapSideUtils
 	{
-		public static bool HasFlagFast(this RectWrapSide side, RectWrapSide value)
+		public static bool HasFlagFast(this RectSide side, RectSide value)
 		{
 			return (side & value) == value;
 		}
