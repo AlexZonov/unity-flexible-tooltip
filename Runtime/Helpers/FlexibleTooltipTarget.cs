@@ -11,12 +11,19 @@ namespace com.flexford.packages.tooltip
 		[SerializeField]
 		private bool _workAtUpdate = true;
 
+		public RectTransform TargetTransform => _transform;
+
 		private void Update()
 		{
 			if (_workAtUpdate)
 			{
 				UpdatePosition();
 			}
+		}
+
+		public void SetTarget(RectTransform targetTransform)
+		{
+			_transform = targetTransform;
 		}
 
 		public void UpdatePosition()
