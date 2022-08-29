@@ -21,6 +21,11 @@ namespace com.flexford.packages.tooltip
 			}
 		}
 
+		public void SetTarget(Transform targetTransform)
+		{
+			SetTarget(targetTransform as RectTransform);
+		}
+
 		public void SetTarget(RectTransform targetTransform)
 		{
 			_transform = targetTransform;
