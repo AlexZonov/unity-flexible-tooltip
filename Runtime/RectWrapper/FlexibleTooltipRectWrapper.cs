@@ -11,6 +11,9 @@ namespace com.flexford.packages.tooltip
 		[SerializeField]
 		private ContainerWrapMode _mode;
 
+		[SerializeField]
+		private RectWrapSide _wrapSide = RectWrapSide.All;
+
 		[SerializeField] [HideInInspector]
 		private RectTransform _transform;
 
@@ -67,7 +70,7 @@ namespace com.flexford.packages.tooltip
 			}
 
 			Rect containerRect = GetTargetRect();
-			FlexibleTooltipUtils.WrapInRect(TooltipTransform, containerRect);
+			FlexibleTooltipUtils.WrapInRect(TooltipTransform, containerRect, _wrapSide);
 		}
 
 		private Rect GetTargetRect()

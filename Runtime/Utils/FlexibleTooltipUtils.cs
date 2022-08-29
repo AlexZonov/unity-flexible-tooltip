@@ -4,17 +4,37 @@ namespace com.flexford.packages.tooltip
 {
 	public static class FlexibleTooltipUtils
 	{
-		public static void WrapInRect(RectTransform targetTansform, Rect containerRect)
+		public static void WrapInRect(RectTransform targetTansform, Rect containerRect, RectWrapSide side = RectWrapSide.All)
 		{
 			Rect targetRect = GetWorldRect(targetTansform);
-			Rect wrappedRect = GetWrappedRect(targetRect, containerRect);
-			WrapImpl(targetTansform, wrappedRect);
+			Rect wrappedRect = GetWrappedRect(targetRect, containerRect, side);
+			Wrap(targetTansform, wrappedRect);
 		}
 
-		public static Rect GetWrappedRect(Rect targetRect, Rect containerRect)
+		public static void Wrap(RectTransform targetTansform, Rect wrappedRect)
 		{
-			float x = Mathf.Clamp(targetRect.xMin, containerRect.xMin, containerRect.xMax - targetRect.width);
-			float y = Mathf.Clamp(targetRect.yMin, containerRect.yMin, containerRect.yMax - targetRect.height);
+			Transform parentTransform = targetTansform.parent;
+			Vector2 worldPointWithPivot = GetPositionAtPivot(wrappedRect, targetTansform.pivot);
+			Vector2 localPointWithPivot = parentTransform != null 
+				                              ? (Vector2) parentTransform.InverseTransformPoint(worldPointWithPivot) 
+				                              : worldPointWithPivot;
+
+			if ((Vector2)targetTansform.localPosition != localPointWithPivot)
+			{
+				targetTansform.localPosition = localPointWithPivot;
+			}
+		}
+
+		public static Rect GetWrappedRect(Rect targetRect, Rect containerRect, RectWrapSide side = RectWrapSide.All)
+		{
+			float x = Mathf.Clamp(targetRect.xMin, 
+			                      side.HasFlagFast(RectWrapSide.Left) ? containerRect.xMin : targetRect.xMin,
+			                      side.HasFlagFast(RectWrapSide.Right) ? (containerRect.xMax - targetRect.width) : targetRect.xMax);
+
+			float y = Mathf.Clamp(targetRect.yMin, 
+			                      side.HasFlagFast(RectWrapSide.Bottom) ? containerRect.yMin : targetRect.yMin, 
+			                      side.HasFlagFast(RectWrapSide.Top) ? (containerRect.yMax - targetRect.height) : targetRect.yMax);
+
 			return new Rect(x, y, targetRect.width, targetRect.height);
 		}
 
@@ -59,20 +79,6 @@ namespace com.flexford.packages.tooltip
 			}
 			Gizmos.color = prevColor;
 			Gizmos.matrix = prevMatrix;
-		}
-
-		private static void WrapImpl(RectTransform targetTansform, Rect wrappedRect)
-		{
-			Transform parentTransform = targetTansform.parent;
-			Vector2 worldPointWithPivot = GetPositionAtPivot(wrappedRect, targetTansform.pivot);
-			Vector2 localPointWithPivot = parentTransform != null 
-				                              ? (Vector2) parentTransform.InverseTransformPoint(worldPointWithPivot) 
-				                              : worldPointWithPivot;
-
-			if ((Vector2)targetTansform.localPosition != localPointWithPivot)
-			{
-				targetTansform.localPosition = localPointWithPivot;
-			}
 		}
 	}
 }

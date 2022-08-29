@@ -85,9 +85,9 @@ namespace com.flexford.packages.tooltip
 
 		private bool IsLeftImpl()
 		{
-			if (_target == null || _target.TargetTransform == null )
+			if (_target == null || _target.TargetTransform == null)
 			{
-				return true;
+				return false;
 			}
 
 			Rect targetRect = FlexibleTooltipUtils.GetWorldRect(_target.TargetTransform);
@@ -99,7 +99,7 @@ namespace com.flexford.packages.tooltip
 			areaRect.yMax -= _padding.top;
 
 			return targetPosAtPivot.x < areaRect.xMin || targetPosAtPivot.x > areaRect.xMax ||
-			               targetPosAtPivot.y < areaRect.yMin || targetPosAtPivot.y > areaRect.yMax;
+			       targetPosAtPivot.y < areaRect.yMin || targetPosAtPivot.y > areaRect.yMax;
 		}
 	}
 }
