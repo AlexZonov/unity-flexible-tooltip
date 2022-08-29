@@ -94,7 +94,7 @@ namespace com.flexford.packages.tooltip
 			}
 			else if (_mode == ContainerWrapMode.Transform)
 			{
-				return FlexibleTooltipUtils.GetWorldRect(_transform);
+				return _transform != null ? FlexibleTooltipUtils.GetWorldRect(_transform) : GetScreenRect();
 			}
 			else if (_mode == ContainerWrapMode.Screen)
 			{
