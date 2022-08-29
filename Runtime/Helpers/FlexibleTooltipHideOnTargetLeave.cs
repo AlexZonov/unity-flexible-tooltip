@@ -35,12 +35,7 @@ namespace com.flexford.packages.tooltip
 
 		private void Update()
 		{
-			if (_target == null || _target.TargetTransform == null)
-			{
-				return;
-			}
-
-			if (!gameObject.activeSelf || (_animator != null && _animator.IsHidding))
+			if (_target == null || _target.TargetTransform == null || !gameObject.activeSelf)
 			{
 				return;
 			}
