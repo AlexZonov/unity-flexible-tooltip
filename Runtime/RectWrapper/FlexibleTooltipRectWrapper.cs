@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace com.flexford.packages.tooltip
 {
-	[ExecuteInEditMode]
+	[ExecuteInEditMode][DefaultExecutionOrder(20)]
 	public class FlexibleTooltipRectWrapper : MonoBehaviour
 	{
 		[SerializeField]
@@ -88,7 +88,7 @@ namespace com.flexford.packages.tooltip
 			_mode = mode;
 		}
 
-		private void Wrap()
+		public void Wrap()
 		{
 			if (TooltipTransform == null)
 			{
