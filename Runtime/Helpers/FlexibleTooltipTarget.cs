@@ -13,6 +13,11 @@ namespace com.flexford.packages.tooltip
 
 		public RectTransform TargetTransform => _transform;
 
+		private void OnEnable()
+		{
+			UpdatePosition();
+		}
+
 		private void Update()
 		{
 			if (_workAtUpdate)
