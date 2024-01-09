@@ -40,7 +40,7 @@ namespace com.flexford.packages.tooltip
 
 		private void Update()
 		{
-			if (_target == null || _target.TargetTransform == null || !gameObject.activeSelf)
+			if (_target == null || _target.TargetRectTransform == null || !gameObject.activeSelf)
 			{
 				return;
 			}
@@ -88,14 +88,14 @@ namespace com.flexford.packages.tooltip
 
 		private bool IsLeftImpl()
 		{
-			if (_target == null || _target.TargetTransform == null)
+			if (_target == null || _target.TargetRectTransform == null)
 			{
 				return false;
 			}
 
-			Rect targetRect = FlexibleTooltipUtils.GetWorldRect(_target.TargetTransform);
+			Rect targetRect = FlexibleTooltipUtils.GetWorldRect(_target.TargetRectTransform);
 			Rect areaRect = FlexibleTooltipUtils.GetWorldRect(_areaTransform);
-			Vector2 targetPosAtPivot = FlexibleTooltipUtils.GetPositionAtPivot(targetRect, _target.TargetTransform.pivot);
+			Vector2 targetPosAtPivot = FlexibleTooltipUtils.GetPositionAtPivot(targetRect, _target.TargetRectTransform.pivot);
 			areaRect.xMin += _padding.left;
 			areaRect.xMax -= _padding.right;
 			areaRect.yMin += _padding.bottom;
