@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using UnityEditor;
 
 #if UNITY_2021_1_OR_NEWER
@@ -14,7 +15,7 @@ using UnityEngine.UI;
 
 namespace com.flexford.packages.tooltip.editor
 {
-	public static class FlexibleTooltipMenuUtilities
+	internal static class FlexibleTooltipMenuUtilities
 	{
 		public static string GetProjectWindowFolder()
 		{
@@ -30,6 +31,33 @@ namespace com.flexford.packages.tooltip.editor
 			}
 
 			return GetRelativePath(projectPath, folderAbsolutePath);
+		}
+
+		public static T FindScriptableObject<T>() where T : ScriptableObject
+		{
+			var guids = AssetDatabase.FindAssets($"t:{typeof(T)}");
+			if (guids.Length == 0)
+			{
+				return null;
+			}
+
+			if (guids.Length > 1)
+			{
+				Debug.LogError("Found multiple configs(will use first):");
+				for (int i = 0; i < guids.Length; i++)
+				{
+					string guid = guids[i];
+					Debug.LogError($"\t{i + 1}) Path: '{AssetDatabase.GUIDToAssetPath(guid)}'");
+				}
+			}
+
+			string path = AssetDatabase.GUIDToAssetPath(guids[0]);
+			if (string.IsNullOrEmpty(path))
+			{
+				return null;
+			}
+
+			return AssetDatabase.LoadAssetAtPath<T>(path);
 		}
 
 		public static void PlaceUIElementRoot(GameObject element, MenuCommand menuCommand)

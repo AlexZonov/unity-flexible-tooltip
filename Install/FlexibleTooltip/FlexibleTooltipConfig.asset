@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1633d33c7b40efabe60b1541de6e5e, type: 3}
+  m_Name: FlexibleTooltipConfig
+  m_EditorClassIdentifier: 
+  <DefaultPrefab>k__BackingField: {fileID: 6290688102956777509, guid: 0d0f619f9e7eee14ba8e64cbd2c650d6, type: 3}
+  <DefaultStyleShort>k__BackingField: {fileID: 11400000, guid: afd445e66989a324fa9bb8906a0f12a3, type: 2}
+  <DefaultStyleMedium>k__BackingField: {fileID: 11400000, guid: 368cd2d28c2b76b48899be66e9401af8, type: 2}
+  <DefaultStyleLong>k__BackingField: {fileID: 11400000, guid: 17aa0f4eeebb886478ec112eb6ca437c, type: 2}

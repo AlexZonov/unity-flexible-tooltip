@@ -4,7 +4,7 @@ using UnityEditor;
 namespace com.flexford.packages.tooltip
 {
 	[CustomEditor(typeof(FlexibleTooltipRectWrapper))]
-	public class FlexibleTooltipRectWrapperEditor : Editor
+	internal class FlexibleTooltipRectWrapperEditor : Editor
 	{
 		private FlexibleTooltipRectWrapper _wrapper;
 		private SerializedProperty _transformProperty;

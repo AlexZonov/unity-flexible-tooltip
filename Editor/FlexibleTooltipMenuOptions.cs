@@ -8,7 +8,7 @@ using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
 namespace com.flexford.packages.tooltip.editor
 {
-	public static class FlexibleTooltipMenuOptions
+	internal static class FlexibleTooltipMenuOptions
 	{
 		public const string CONTEXT_MENU_PATH = "Tools/Flexible Tooltip/";
 
