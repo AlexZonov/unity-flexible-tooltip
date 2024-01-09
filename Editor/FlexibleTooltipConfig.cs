@@ -2,7 +2,7 @@
 
 namespace com.flexford.packages.tooltip.editor
 {
-	[CreateAssetMenu(fileName = "TooltipStyle", menuName = "Flexible Tooltip/Create config")]
+	[CreateAssetMenu(fileName = "FlexibleTooltipConfig", menuName = "Flexible Tooltip/Create config")]
 	public class FlexibleTooltipConfig : ScriptableObject
 	{
 		public static FlexibleTooltipConfig Instance => _instance == null ? _instance = FlexibleTooltipMenuUtilities.FindScriptableObject<FlexibleTooltipConfig>() : _instance;

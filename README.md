@@ -6,16 +6,16 @@ A simple, flexible and user-friendly UI element that can be used for both toolti
 - supported horizontal 4-sides layout
 - supported vertical 4-sides layout
 - supported simple rect 4-sides layout
-- has simple rect wrapper component (<kbd>FlexibleTooltipRectWrapper</kbd>)
-- has simple animator component (<kbd>FlexibleTooltipAnimator</kbd>)
+- has simple components for extend tooltip behavior
 - easy style creation and replacement
-- WIP: set some content
 
 ## Requirements ⚠️
 - Unity 2020.3 and above
 - DOTween (with asmdef: <kbd>DOTween.Modules</kbd>)
 
 ## Installation 💾
+
+### Add package in project
 <details>
 <summary>Add from GitHub in <kbd>Package Manager Editor Window</kbd></summary>
 
@@ -34,15 +34,61 @@ A simple, flexible and user-friendly UI element that can be used for both toolti
 - save
 </details>
 
+### Install additional assets
+Execute `Tools -> Flexible Tooltip -> Install`
+
 ## How to use 💡
-### Just use default element with default styles
-1) <kbd>Hierarhy -> RBM -> UI -> Flexible Tooltip -> Create</kbd>
-2) Prepare element in inspector
+
+### Check package config
+Config was added after "Install" action and has name `FlexibleTooltipConfig.asset`  
+In config need set default assets(prefab and styles).
+
+### Look at samples
+1) Open `Package Manager Window`  
+2) Select `Flexible Tooltip` package
+3) Choose sample, like example `Overview`, click `Import` or `Reimport`  
+4) Open scene from sample by path `Assets/Samples/Flexible Tooltip/[PACKAGE_VERSION]/[SAMPLE_NAME]`  
+5) Start play mode
+
+### Use default prefab with default styles
+1) Execute in scene hierarhy window `Mouse right button -> Flexible Tooltip -> Create`  
+2) Prepare object in inspector
 3) Done
 
-### Create your element variant
-TODO
+### Ways for change default tooltip prefab ways
+1) Change base `tooltip.prefab`, this file was created after `Install` action(Not recommended)
+2) Create prefab variant, prepare and set in `FlexibleTooltipConfig.asset` as default (Recomended)
 
+### Create your element variant
+Variant will created relative default prefab from config `FlexibleTooltipConfig.asset`   
+You can create new prefab variants for all need cases with different components set:
+1) Open preffered folder for prefab variants
+2) Execute in project window `Mouse right button -> Create -> Flexible Tooltip -> Create Prefab Variant`  
+3) Prepare variant
+4) Done
 
 ### Create your own unique styles
 TODO
+
+## Components
+
+### FlexibleTooltip
+Main component with general settings and logic
+
+### FlexibleTooltipHideOnClick
+Add hide on click ability for tooltip
+
+### FlexibleTooltipAnimator
+Add ability for show\hide tooltip.  
+Component has debug actions in context menu.  
+⚠️ DOTween required.
+
+### FlexibleTooltipRectWrapper
+Add ability for restrict tooltip moving in rect
+
+### FlexibleTooltipTarget
+Add ability for auto-move tooltip to target object
+
+### FlexibleTooltipHideOnTargetLeave
+Add ability for hide tooltip if target leave from area.  
+You can set required paddings and enable\disable sides for this logic.
