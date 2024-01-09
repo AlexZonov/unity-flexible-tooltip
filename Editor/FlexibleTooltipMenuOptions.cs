@@ -19,7 +19,7 @@ namespace com.flexford.packages.tooltip.editor
 		{
 			Assembly currentAssembly = typeof(FlexibleTooltipMenuOptions).Assembly;
 			PackageInfo currentPackageInfo = UnityEditor.PackageManager.PackageInfo.FindForAssembly(currentAssembly);
-			string installPackagePath = $"{currentPackageInfo.assetPath}/install.unitypackage";
+			string installPackagePath = $"{currentPackageInfo.assetPath}/Install/install.unitypackage";
 			AssetDatabase.ImportPackage(installPackagePath, true);
 			Debug.Log($"Install package '{currentPackageInfo.displayName}({currentPackageInfo.name})' completed");
 		}
