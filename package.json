@@ -16,5 +16,11 @@
     "email": "flexford1@gmail.com",
     "url": "https://github.com/AlexZonov/unity-flexible-tooltip"
   },
-  "samples": []
+  "samples": [
+    {
+      "displayName": "Overview",
+      "description": "Contains scene with all tooltip view variants",
+      "path": "Samples~/Overview"
+    }
+  ]
 }
