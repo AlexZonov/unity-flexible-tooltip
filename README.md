@@ -35,7 +35,11 @@ A simple, flexible and user-friendly UI element that can be used for both toolti
 </details>
 
 ### Install additional assets
-Execute `Tools -> Flexible Tooltip -> Install`
+1) Execute `Tools -> Flexible Tooltip -> Install`
+2) In project will be add `FlexibleTooltip` folder with configs and assets
+3) You can move this folder and rename
+
+> 📌 You can change all default assets, but it's not recommended
 
 ## How to use 💡
 
@@ -56,8 +60,8 @@ In config need set default assets(prefab and styles).
 3) Done
 
 ### Ways for change default tooltip prefab ways
-1) Change base `tooltip.prefab`, this file was created after `Install` action(Not recommended)
-2) Create prefab variant, prepare and set in `FlexibleTooltipConfig.asset` as default (Recomended)
+1) Change base `tooltip.prefab`, this file was created after `Install` action(not recommended)
+2) Create prefab variant, prepare and set in `FlexibleTooltipConfig.asset` as default (recommended)
 
 ### Create your element variant
 Variant will created relative default prefab from config `FlexibleTooltipConfig.asset`   
@@ -68,7 +72,17 @@ You can create new prefab variants for all need cases with different components 
 4) Done
 
 ### Create your own unique styles
-TODO
+1) Open preffered folder for prefab variants
+2) Execute in project window `Mouse right button -> Create -> Flexible Tooltip -> Create Style`
+   - `New` - create new empty style
+   - `Default(short) variant` - create variant of default short style
+   - `Default(medium) variant` - create variant of default medium style
+   - `Default(large) variant` - create variant of default large style
+3) Look at default styles settings and sprites import settings
+4) Make custom sprites like were in default styles
+5) Prepare your styles settings
+6) (optional) set as default to config `FlexibleTooltipConfig.asset`
+7) Done, you can use style in `FlexibleTooltip` component
 
 ## Components
 
