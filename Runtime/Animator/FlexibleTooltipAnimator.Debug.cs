@@ -8,6 +8,13 @@ namespace com.flexford.packages.tooltip
 	{
 		private const string DEBUG_ACTIONS_PATH = "CONTEXT/FlexibleTooltipAnimator/";
 
+		[MenuItem(DEBUG_ACTIONS_PATH + "Show(by inspector)")]
+		private static void Debug_Show_by_inspector(MenuCommand command)
+		{
+			FlexibleTooltipAnimator component = (FlexibleTooltipAnimator)command.context;
+			component.Show();
+		}
+
 		[MenuItem(DEBUG_ACTIONS_PATH + "Show(3 sec)")]
 		private static void Debug_Show_3f(MenuCommand command)
 		{
@@ -22,6 +29,13 @@ namespace com.flexford.packages.tooltip
 			component.Show(6f);
 		}
 
+		[MenuItem(DEBUG_ACTIONS_PATH + "Hide(by inspector)")]
+		private static void Debug_Hide_by_inspector(MenuCommand command)
+		{
+			FlexibleTooltipAnimator component = (FlexibleTooltipAnimator)command.context;
+			component.Hide();
+		}
+
 		[MenuItem(DEBUG_ACTIONS_PATH + "Hide(3 sec)")]
 		private static void Debug_Hide_3f(MenuCommand command)
 		{
@@ -34,6 +48,13 @@ namespace com.flexford.packages.tooltip
 		{
 			FlexibleTooltipAnimator component = (FlexibleTooltipAnimator)command.context;
 			component.Hide(6f);
+		}
+
+		[MenuItem(DEBUG_ACTIONS_PATH + "Show and Hide(by inspector)")]
+		private static void Debug_ShowAndHide_by_inspector(MenuCommand command)
+		{
+			FlexibleTooltipAnimator component = (FlexibleTooltipAnimator)command.context;
+			component.ShowAndHide();
 		}
 
 		[MenuItem(DEBUG_ACTIONS_PATH + "Show and Hide(9 sec)")]
